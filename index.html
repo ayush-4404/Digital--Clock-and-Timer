@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Clock & Countdown Suite</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="py-16">
+      <div class="container flex items-center justify-between">
+        <h1>Digital Clock &amp; Countdown Suite</h1>
+        <button id="themeToggle" class="btn btn--secondary" aria-label="Toggle Theme">
+          Toggle Theme
+        </button>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="suite flex flex-wrap gap-16 justify-center">
+        <!-- Digital Clock -->
+        <section id="clockSection" class="card clock-card" style="flex:1 1 300px; max-width:350px;">
+          <div class="card__body flex flex-col items-center gap-8">
+            <h2>Digital Clock</h2>
+            <h3 id="clockTime" class="clock-time" style="font-family: var(--font-family-mono); font-size: 2.5rem;">00:00:00</h3>
+            <p id="clockDate" class="clock-date" style="font-size: 1rem;"></p>
+          </div>
+        </section>
+
+        <!-- Pomodoro Timer -->
+        <section id="pomodoroSection" class="card pomodoro-card" style="flex:1 1 300px; max-width:350px;">
+          <div class="card__body flex flex-col items-center gap-8">
+            <h2>Pomodoro Timer</h2>
+            <div class="circle-wrapper" style="position: relative; width: 180px; height: 180px;">
+              <svg id="pomodoroSvg" width="180" height="180" viewBox="0 0 100 100" style="transform: rotate(-90deg);">
+                <circle cx="50" cy="50" r="45" stroke="var(--color-secondary)" stroke-width="10" fill="none" />
+                <circle id="pomodoroProgress" cx="50" cy="50" r="45" stroke="var(--color-primary)" stroke-width="10" fill="none" stroke-dasharray="282.6" stroke-dashoffset="282.6" stroke-linecap="round" />
+              </svg>
+              <div id="pomodoroDisplay" class="circle-center flex items-center justify-center" style="position:absolute; top:0; left:0; width:100%; height:100%; font-family: var(--font-family-mono); font-size: 1.5rem; transform: rotate(90deg);">
+                25:00
+              </div>
+            </div>
+
+            <!-- Mode Buttons -->
+            <div class="flex gap-8">
+              <button class="btn btn--outline btn--sm" data-mode="work">Work</button>
+              <button class="btn btn--outline btn--sm" data-mode="short">Short Break</button>
+              <button class="btn btn--outline btn--sm" data-mode="long">Long Break</button>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="flex gap-8">
+              <button id="pomodoroStart" class="btn btn--primary btn--sm">Start</button>
+              <button id="pomodoroPause" class="btn btn--secondary btn--sm" disabled>Pause</button>
+              <button id="pomodoroReset" class="btn btn--outline btn--sm">Reset</button>
+            </div>
+
+            <p>Completed Sessions: <span id="sessionCounter">0</span></p>
+          </div>
+        </section>
+
+        <!-- Custom Countdown Timer -->
+        <section id="countdownSection" class="card" style="flex:1 1 300px; max-width:350px;">
+          <div class="card__body flex flex-col gap-8 items-center">
+            <h2>Custom Countdown</h2>
+            <div class="flex gap-8">
+              <div class="form-group">
+                <label for="hoursInput" class="form-label">HH</label>
+                <input type="number" id="hoursInput" class="form-control" min="0" max="23" value="0" />
+              </div>
+              <div class="form-group">
+                <label for="minutesInput" class="form-label">MM</label>
+                <input type="number" id="minutesInput" class="form-control" min="0" max="59" value="0" />
+              </div>
+              <div class="form-group">
+                <label for="secondsInput" class="form-label">SS</label>
+                <input type="number" id="secondsInput" class="form-control" min="0" max="59" value="0" />
+              </div>
+            </div>
+
+            <h3 id="countdownDisplay" style="font-family: var(--font-family-mono); font-size: 2rem;">00:00:00</h3>
+
+            <div class="progress-container" style="width: 100%; height: 10px; background: var(--color-secondary); border-radius: var(--radius-full); overflow:hidden;">
+              <div id="countdownProgress" class="progress-bar" style="height:100%; width:0%; background: var(--color-primary);"></div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="flex gap-8">
+              <button id="countdownStart" class="btn btn--primary btn--sm">Start</button>
+              <button id="countdownPause" class="btn btn--secondary btn--sm" disabled>Pause</button>
+              <button id="countdownReset" class="btn btn--outline btn--sm">Reset</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="py-16">
+      <div class="container">
+        <p id="statusMessage">Ready.</p>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
